@@ -1,0 +1,78 @@
+.container {
+    position: absolute;
+    left: var(--left);
+    top: var(--top);
+    width: 100px;
+    height: 105px;
+}
+
+.cube {
+    width: 100px;
+    height: 105px;
+    overflow: hidden;
+    transform: translateY(0px);
+}
+
+.cube--stopped {
+    animation: float 2000ms ease-in-out infinite;
+}
+
+@keyframes float {
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-20px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+.face {
+    transform-origin: 0 0;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: 1px solid grey;
+}
+
+.front {
+    -ms-transform: rotate(-30deg) skewX(-30deg) translate(53px, 69px) scaleY(0.864);
+    -webkit-transform: rotate(-30deg) skewX(-30deg) translate(53px, 69px) scaleY(0.864);
+    transform: rotate(-30deg) skewX(-30deg) translate(53px, 69px) scaleY(0.864);
+}
+
+.top {
+    -ms-transform: rotate(210deg) skew(-30deg) translate(-80px, -23px) scaleY(0.864);
+    -webkit-transform: rotate(210deg) skew(-30deg) translate(-80px, -23px) scaleY(0.864);
+    transform: rotate(210deg) skew(-30deg) translate(-80px, -23px) scaleY(0.864);
+}
+
+.side {
+    -ms-transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(26px, -54px);
+    -webkit-transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(26px, -54px);
+    transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(26px, -54px);
+}
+
+.ligth {
+    transform-origin: 0px 0px;
+    position: absolute;
+    width: 5px;
+    height: 50px;
+    background: white;
+    border: 1px solid grey;
+    transition-property: background-color, box-shadow;
+    transition-duration: 1000ms;
+    -ms-transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(40px, -54px);
+    -webkit-transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(40px, -54px);
+    transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(40px, -54px);
+}
+
+.ligth--on {
+    background-color: var(--lightColor);
+    box-shadow: 1px -1px 34px 0px var(--lightColor);
+}

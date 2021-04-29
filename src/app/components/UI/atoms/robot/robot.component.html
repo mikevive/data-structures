@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="cube" [ngClass]="{'cube--stopped': getIsRobotStopped()}">
+        <div class="face top"></div>
+        <div class="face side"></div>
+        <div class="face front"></div>
+        <div class="ligth" [ngClass]="{'ligth--on': getIsLigthOn()}"></div>
+    </div>
+</div>

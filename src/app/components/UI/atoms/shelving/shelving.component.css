@@ -1,0 +1,38 @@
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.shelving {
+    transform-origin: 0 0;
+    position: absolute;
+    width: 490px;
+    height: 450px;
+    background: white;
+    border: 1px solid grey;
+    -ms-transform: rotate(-30deg) skewX(-30deg) translate(50px, 275px) scaleY(0.864);
+    -webkit-transform: rotate(-30deg) skewX(-30deg) translate(50px, 275px) scaleY(0.864);
+    transform: rotate(-30deg) skewX(-30deg) translate(50px, 275px) scaleY(0.864);
+    border-collapse: separate;
+    border-spacing: 20px;
+    *border-collapse: expression('separate', cellSpacing='20px');
+}
+
+.hole {
+    background-color: rgb(243, 240, 236);
+    border: 1px solid grey;
+    margin: 20px;
+    padding: 20px;
+}
