@@ -1,21 +1,19 @@
 import { writeHeapSnapshot } from 'v8';
 import { LinkedList } from './linked-list.js';
+import { Array } from './array.js'
+import { Stack, isBalanced } from './stack.js'
+import { Queue } from './queue.js'
 
-const linkedList = new LinkedList<number>();
+const queue = new Queue<number>(5)
 
-const register = () => {
-  console.log(linkedList);
-  // writeHeapSnapshot();
-};
-
-register();
-
-for (let i = 0; i < 1_000_000; i++) {
-  //if (i === 50_000) register();
-  linkedList.addLast(i);
-  // if (i >= 10) linkedList.removeFirst();
-}
-
-register();
-
-linkedList.toArray()
+queue.add(0)
+queue.add(1)
+queue.add(2)
+queue.add(3)
+queue.add(4)
+console.log(queue)
+console.log(queue.remove())
+console.log(queue.remove())
+queue.add(5)
+queue.add(6)
+console.log(queue)

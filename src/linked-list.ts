@@ -1,26 +1,26 @@
 export class LinkedList<T> {
-  head: Item<T> | null = null;
-  tail: Item<T> | null = null;
+  head: Node<T> | null = null;
+  tail: Node<T> | null = null;
 
   addFirst(value: T): void {
-    const item = new Item<T>(value, null);
+    const node = new Node<T>(value, null);
     if (this.head === null) {
-      this.head = item;
-      this.tail = item;
+      this.head = node;
+      this.tail = node;
     } else {
-      item.next = this.head;
-      this.head = item;
+      node.next = this.head;
+      this.head = node;
     }
   }
 
   addLast(value: T): void {
-    const item = new Item<T>(value, null);
+    const node = new Node<T>(value, null);
     if (this.tail === null) {
-      this.head = item;
-      this.tail = item;
+      this.head = node;
+      this.tail = node;
     } else {
-      this.tail.next = item;
-      this.tail = item;
+      this.tail.next = node;
+      this.tail = node;
     }
   }
 
@@ -41,14 +41,14 @@ export class LinkedList<T> {
       this.tail = null;
       return;
     }
-    const penultimateItem = this.findPenultimate(this.head);
-    if (penultimateItem) penultimateItem.next = null;
+    const penultimateNode = this.findPenultimate(this.head);
+    if (penultimateNode) penultimateNode.next = null;
   }
 
-  private findPenultimate(item: Item<T>): Item<T> | null {
-    if (!item.next) return null;
-    if (!item.next.next) return item;
-    return this.findPenultimate(item.next);
+  private findPenultimate(node: Node<T>): Node<T> | null {
+    if (!node.next) return null;
+    if (!node.next.next) return node;
+    return this.findPenultimate(node.next);
   }
 
   indexOf(value: T): number {
@@ -70,13 +70,41 @@ export class LinkedList<T> {
     if (this.head === null) return [];
     return this.head.toArray();
   }
+
+  reverse(): void {
+    if(this.head === null) return;
+    if (this.head === this.tail) return;
+    let previousNode: Node<T> | null = null
+    let currentNode: Node<T> | null = this.head;
+    let nextNode: Node<T> | null = null
+    while(currentNode !== null){
+      nextNode = currentNode.next
+      currentNode.next = previousNode
+      previousNode = currentNode
+      currentNode = nextNode
+    }
+    this.tail = this.head;
+    this.head = previousNode
+  }
+
+  getKthFromTheEnd(k: number): T {
+    if ( k < 0 || k >= this.size()) throw new RangeError("Value k is greater than the linked list length")
+    let pointer1: Node<T> | null = this.head
+    let pointer2: Node<T> | null = this.head
+    for (let i = 0; i < k; i++) pointer1 = pointer1!.next
+    while(pointer1 !== this.tail){
+      pointer1 = pointer1!.next
+      pointer2 = pointer2!.next
+    }
+    return pointer2!.value
+  }
 }
 
-export class Item<T> {
+export class Node<T> {
   value: T;
-  next: Item<T> | null;
+  next: Node<T> | null;
 
-  constructor(value: T, next: Item<T> | null) {
+  constructor(value: T, next: Node<T> | null) {
     this.value = value;
     this.next = next;
   }
